@@ -1,0 +1,314 @@
+<%- include('../partials/head.ejs' ) %>
+
+    <body class="min-h-screen hero-bg security-pattern">
+        <%- include('../partials/navbar.ejs') %>
+
+            <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-md w-full space-y-8">
+                    <!-- Header -->
+
+                    <div class="text-center fade-in">
+                        <div
+                            class="mx-auto h-20 w-20 bg-emerald-600 rounded-full flex items-center justify-center mb-6 floating-animation">
+                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-4xl font-bold text-white text-shadow">
+                            Admin <span class="gradient-text">Access</span>
+                        </h2>
+                        <p class="mt-2 text-gray-300 text-lg">
+                            Premium Livestock Management System
+                        </p>
+                    </div>
+
+                    <!-- Auth Form Container -->
+                    <div class="glass-effect rounded-3xl p-8 fade-in" style="animation-delay: 0.2s;">
+                        <!-- Login Form -->
+                        <div id="loginForm" class="form-slide">
+                            <div class="space-y-6">
+                                <div class="text-center mb-8">
+                                    <h3 class="text-2xl font-bold text-white mb-2">Welcome Back</h3>
+                                    <p class="text-gray-300">Sign in to your admin account</p>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-200 mb-2">
+                                            <i class="fas fa-user mr-2"></i>Username or Email
+                                        </label>
+                                        <input type="text"
+                                            class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-300 focus:outline-none input-glow transition-all duration-300"
+                                            placeholder="Enter your username or email">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-200 mb-2">
+                                            <i class="fas fa-lock mr-2"></i>Password
+                                        </label>
+                                        <div class="relative">
+                                            <input type="password" id="loginPassword"
+                                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-300 focus:outline-none input-glow transition-all duration-300"
+                                                placeholder="Enter your password">
+                                            <button type="button"
+                                                class="absolute right-3 top-3 text-gray-300 hover:text-white transition-colors"
+                                                onclick="togglePassword('loginPassword')">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <input type="checkbox"
+                                                class="h-4 w-4 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500">
+                                            <label class="ml-2 block text-sm text-gray-300">Remember me</label>
+                                        </div>
+                                        <a href="#"
+                                            class="text-sm text-emerald-400 hover:text-emerald-300 transition-colors">
+                                            Forgot password?
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="w-full bg-emerald-600 text-white py-3 rounded-2xl font-semibold text-lg hover:bg-emerald-700 transition-all duration-300 btn-glow pulse-glow">
+                                    <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                                </button>
+
+                                <div class="text-center">
+                                    <p class="text-gray-300">
+                                        Don't have an account?
+                                        <button onclick="switchToSignup()"
+                                            class="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors">
+                                            Create Account
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Signup Form -->
+                        <div id="signupForm" class="form-slide slide-in hidden">
+                            <div class="space-y-6">
+                                <div class="text-center mb-8">
+                                    <h3 class="text-2xl font-bold text-white mb-2">Create Admin Account</h3>
+                                    <p class="text-gray-300">Join our livestock management system</p>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-200 mb-2">
+                                                <i class="fas fa-user mr-2"></i>First Name
+                                            </label>
+                                            <input type="text"
+                                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-300 focus:outline-none input-glow transition-all duration-300"
+                                                placeholder="First name">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-200 mb-2">
+                                                <i class="fas fa-user mr-2"></i>Last Name
+                                            </label>
+                                            <input type="text"
+                                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-2xl text-2xl placeholder-gray-300 focus:outline-none input-glow transition-all duration-300"
+                                                placeholder="Last name">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-200 mb-2">
+                                            <i class="fas fa-envelope mr-2"></i>Email Address
+                                        </label>
+                                        <input type="email"
+                                            class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-300 focus:outline-none input-glow transition-all duration-300"
+                                            placeholder="admin@example.com">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-200 mb-2">
+                                            <i class="fas fa-phone mr-2"></i>Phone Number
+                                        </label>
+                                        <input type="tel"
+                                            class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-300 focus:outline-none input-glow transition-all duration-300"
+                                            placeholder="+91 9876543210">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-200 mb-2">
+                                            <i class="fas fa-lock mr-2"></i>Password
+                                        </label>
+                                        <div class="relative">
+                                            <input type="password" id="signupPassword"
+                                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-300 focus:outline-none input-glow transition-all duration-300"
+                                                placeholder="Create strong password">
+                                            <button type="button"
+                                                class="absolute right-3 top-3 text-gray-300 hover:text-white transition-colors"
+                                                onclick="togglePassword('signupPassword')">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-200 mb-2">
+                                            <i class="fas fa-lock mr-2"></i>Confirm Password
+                                        </label>
+                                        <div class="relative">
+                                            <input type="password" id="confirmPassword"
+                                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-300 focus:outline-none input-glow transition-all duration-300"
+                                                placeholder="Confirm your password">
+                                            <button type="button"
+                                                class="absolute right-3 top-3 text-gray-300 hover:text-white transition-colors"
+                                                onclick="togglePassword('confirmPassword')">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input type="checkbox"
+                                            class="h-4 w-4 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500">
+                                        <label class="ml-2 block text-sm text-gray-300">
+                                            I agree to the <a href="#"
+                                                class="text-emerald-400 hover:text-emerald-300">Terms
+                                                of
+                                                Service</a> and <a href="#"
+                                                class="text-emerald-400 hover:text-emerald-300">Privacy Policy</a>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="w-full bg-emerald-600 text-white py-3 rounded-2xl font-semibold text-lg hover:bg-emerald-700 transition-all duration-300 btn-glow pulse-glow">
+                                    <i class="fas fa-user-plus mr-2"></i>Create Account
+                                </button>
+
+                                <div class="text-center">
+                                    <p class="text-gray-300">
+                                        Already have an account?
+                                        <button onclick="switchToLogin()"
+                                            class="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors">
+                                            Sign In
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="text-center fade-in" style="animation-delay: 0.4s;">
+                        <div class="grid grid-cols-3 gap-4 max-w-md mx-auto">
+                            <div class="text-center">
+                                <div class="text-emerald-400 text-2xl mb-2">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <p class="text-gray-300 text-xs">Secure Access</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-emerald-400 text-2xl mb-2">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <p class="text-gray-300 text-xs">Analytics</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-emerald-400 text-2xl mb-2">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <p class="text-gray-300 text-xs">Management</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Elements -->
+            <div class="absolute top-20 right-20 text-emerald-400 opacity-20 floating-animation">
+                <i class="fas fa-leaf text-4xl"></i>
+            </div>
+            <div class="absolute bottom-20 left-20 text-emerald-400 opacity-20 floating-animation"
+                style="animation-delay: 1s;">
+                <i class="fas fa-paw text-3xl"></i>
+            </div>
+            <div class="absolute top-32 left-32 text-emerald-300 opacity-20 floating-animation"
+                style="animation-delay: 2s;">
+                <i class="fas fa-seedling text-3xl"></i>
+            </div>
+            <div class="absolute bottom-32 right-32 text-emerald-300 opacity-20 floating-animation"
+                style="animation-delay: 3s;">
+                <i class="fas fa-mountain text-3xl"></i>
+            </div>
+
+            <script>
+                function switchToSignup() {
+                    const loginForm = document.getElementById('loginForm');
+                    const signupForm = document.getElementById('signupForm');
+
+                    loginForm.classList.add('slide-out');
+
+                    setTimeout(() => {
+                        loginForm.classList.add('hidden');
+                        signupForm.classList.remove('hidden');
+                        signupForm.classList.remove('slide-in');
+                    }, 250);
+                }
+
+                function switchToLogin() {
+                    const loginForm = document.getElementById('loginForm');
+                    const signupForm = document.getElementById('signupForm');
+
+                    signupForm.classList.add('slide-in');
+
+                    setTimeout(() => {
+                        signupForm.classList.add('hidden');
+                        loginForm.classList.remove('hidden');
+                        loginForm.classList.remove('slide-out');
+                    }, 250);
+                }
+
+                function togglePassword(inputId) {
+                    const passwordInput = document.getElementById(inputId);
+                    const icon = passwordInput.nextElementSibling.querySelector('i');
+
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        passwordInput.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                }
+
+                // Add form validation
+                document.addEventListener('DOMContentLoaded', function () {
+                    const forms = document.querySelectorAll('form');
+
+                    forms.forEach(form => {
+                        form.addEventListener('submit', function (e) {
+                            e.preventDefault();
+
+                            // Add loading state
+                            const submitBtn = this.querySelector('button[type="submit"]');
+                            const originalText = submitBtn.innerHTML;
+                            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+                            submitBtn.disabled = true;
+
+                            // Simulate API call
+                            setTimeout(() => {
+                                submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Success!';
+                                submitBtn.classList.add('bg-green-600');
+
+                                setTimeout(() => {
+                                    submitBtn.innerHTML = originalText;
+                                    submitBtn.disabled = false;
+                                    submitBtn.classList.remove('bg-green-600');
+                                }, 2000);
+                            }, 2000);
+                        });
+                    });
+                });
+            </script>
+    </body>
+
+    </html>

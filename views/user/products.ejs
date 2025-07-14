@@ -1,0 +1,592 @@
+<%- include('../partials/head.ejs') %>
+
+
+    <body>
+        <%- include('../partials/navbar.ejs') %>
+
+            <main>
+
+
+                <section class="hero-bg min-h-150 flex items-center relative overflow-hidden">
+                    <div class="container mx-auto px-6 py-20 relative z-10">
+                        <div class="text-center">
+                            <div class="inline-block mb-6">
+                                <span class="bg-emerald-100 text-emerald-800 px-6 py-3 rounded-full text-m font-medium">
+                                    🐄 Premium Livestock
+                                </span>
+                            </div>
+
+                            <h1 class="text-6xl lg:text-6xl font-bold text-white leading-tight mb-6 fade-in">
+                                Our <span class="text">Premium</span>
+                                <br>Livestock
+                            </h1>
+
+                            <p class="text-2xl text-gray-200 max-w-3xl mx-auto mb-8 fade-in"
+                                style="animation-delay: 0.2s;">
+                                Explore our exceptional collection of Osmanabadi goats, sheep, and poultry through our
+                                comprehensive
+                                gallery
+                            </p>
+
+                            <div class="flex justify-center space-x-4 fade-in" style="animation-delay: 0.4s;">
+                                <button
+                                    class="cursor-pointer bg-emerald-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-emerald-700 transition-colors pulse-glow">
+                                    <i class="fas fa-images mr-2"></i>View Gallery
+                                </button>
+                                <a href="/contact-us"
+                                    class="cursor-pointer border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:text-emerald-600 transition-colors">
+                                    <i class="fas fa-phone mr-2"></i>Contact Us
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Elements -->
+                    <div class="absolute top-20 right-20 text-white opacity-20 floating-animation">
+                        <i class="fas fa-leaf text-6xl"></i>
+                    </div>
+                    <div class="absolute bottom-20 left-20 text-white opacity-20 floating-animation"
+                        style="animation-delay: 1s;">
+                        <i class="fas fa-mountain text-5xl"></i>
+                    </div>
+                </section>
+
+                <!-- Gallery Section -->
+                <section class="py-20 bg-white">
+                    <div class="container mx-auto px-6">
+                        <!-- Section Header -->
+                        <div class="text-center mb-16">
+                            <h2 class="text-5xl font-bold text-gray-900 mb-6">
+                                Premium <span class="gradient-text">Livestock</span> Collection
+                            </h2>
+                            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                                Discover our carefully curated selection of high-quality livestock including Osmanabadi
+                                goats, sheep,
+                                and poultry
+                            </p>
+                        </div>
+
+                        <!-- Category Filters -->
+                        <div class="flex flex-wrap justify-center gap-4 mb-12">
+                            <button
+                                class="cursor-pointer category-btn active px-8 py-3 rounded-full font-semibold text-gray-700 bg-gray-100 hover:bg-emerald-600 hover:text-white">
+                                All Livestock
+                            </button>
+                            <button
+                                class="cursor-pointer category-btn px-8 py-3 rounded-full font-semibold text-gray-700 bg-gray-100 hover:bg-emerald-600 hover:text-white">
+                                🐐 Osmanabadi Goats
+                            </button>
+                            <button
+                                class="cursor-pointer category-btn px-8 py-3 rounded-full font-semibold text-gray-700 bg-gray-100 hover:bg-emerald-600 hover:text-white">
+                                🐑 Sheep
+                            </button>
+                            <button
+                                class="cursor-pointer category-btn px-8 py-3 rounded-full font-semibold text-gray-700 bg-gray-100 hover:bg-emerald-600 hover:text-white">
+                                🐔 Poultry
+                            </button>
+                        </div>
+
+                        <!-- Gallery Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                            <!-- Osmanabadi Goats -->
+                            <div class="gallery-card bg-white rounded-3xl overflow-hidden shadow-lg relative group">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                        alt="Osmanabadi Goats"
+                                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                                    <div class="overlay-content absolute inset-0 flex items-center justify-center">
+                                        <div class="text-center text-white">
+                                            <i class="fas fa-eye text-3xl mb-2"></i>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Premium Osmanabadi Goats</h3>
+                                    <p class="text-gray-600 mb-4">High-quality breeding stock with excellent meat
+                                        production
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-emerald-600 font-semibold">₹25,000+</span>
+                                        <button
+                                            class="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-emerald-200 transition-colors">
+                                            View More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sheep -->
+                            <div class="gallery-card bg-white rounded-3xl overflow-hidden shadow-lg relative group">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                        alt="Premium Sheep"
+                                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                                    <div class="overlay-content absolute inset-0 flex items-center justify-center">
+                                        <div class="text-center text-white">
+                                            <i class="fas fa-eye text-3xl mb-2"></i>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Premium Sheep</h3>
+                                    <p class="text-gray-600 mb-4">Healthy sheep with excellent wool and meat quality</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-emerald-600 font-semibold">₹15,000+</span>
+                                        <button
+                                            class="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-emerald-200 transition-colors">
+                                            View More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Poultry -->
+                            <div class="gallery-card bg-white rounded-3xl overflow-hidden shadow-lg relative group">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                        alt="Premium Poultry"
+                                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                                    <div class="overlay-content absolute inset-0 flex items-center justify-center">
+                                        <div class="text-center text-white">
+                                            <i class="fas fa-eye text-3xl mb-2"></i>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Premium Poultry</h3>
+                                    <p class="text-gray-600 mb-4">High-quality chickens for meat and egg production</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-emerald-600 font-semibold">₹500+</span>
+                                        <button
+                                            class="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-emerald-200 transition-colors">
+                                            View More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- More Goats -->
+                            <div class="gallery-card bg-white rounded-3xl overflow-hidden shadow-lg relative group">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1551858088-4c20d4b61d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                        alt="Goat Farm"
+                                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                                    <div class="overlay-content absolute inset-0 flex items-center justify-center">
+                                        <div class="text-center text-white">
+                                            <i class="fas fa-eye text-3xl mb-2"></i>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Young Osmanabadi Kids</h3>
+                                    <p class="text-gray-600 mb-4">Healthy young goats ready for breeding</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-emerald-600 font-semibold">₹12,000+</span>
+                                        <button
+                                            class="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-emerald-200 transition-colors">
+                                            View More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Breeding Stock -->
+                            <div class="gallery-card bg-white rounded-3xl overflow-hidden shadow-lg relative group">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                        alt="Breeding Stock"
+                                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                                    <div class="overlay-content absolute inset-0 flex items-center justify-center">
+                                        <div class="text-center text-white">
+                                            <i class="fas fa-eye text-3xl mb-2"></i>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Breeding Buck</h3>
+                                    <p class="text-gray-600 mb-4">Elite breeding males with superior genetics</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-emerald-600 font-semibold">₹35,000+</span>
+                                        <button
+                                            class="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-emerald-200 transition-colors">
+                                            View More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Farm Scene -->
+                            <div class="gallery-card bg-white rounded-3xl overflow-hidden shadow-lg relative group">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                        alt="Farm Scene"
+                                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                                    <div class="overlay-content absolute inset-0 flex items-center justify-center">
+                                        <div class="text-center text-white">
+                                            <i class="fas fa-eye text-3xl mb-2"></i>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Farm Environment</h3>
+                                    <p class="text-gray-600 mb-4">Natural grazing environment for healthy livestock</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-emerald-600 font-semibold">Visit Farm</span>
+                                        <button
+                                            class="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-emerald-200 transition-colors">
+                                            View More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quality Assurance -->
+                            <div class="gallery-card bg-white rounded-3xl overflow-hidden shadow-lg relative group">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                        alt="Quality Check"
+                                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                                    <div class="overlay-content absolute inset-0 flex items-center justify-center">
+                                        <div class="text-center text-white">
+                                            <i class="fas fa-eye text-3xl mb-2"></i>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Quality Assurance</h3>
+                                    <p class="text-gray-600 mb-4">Regular health checks and quality monitoring</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-emerald-600 font-semibold">Health First</span>
+                                        <button
+                                            class="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-emerald-200 transition-colors">
+                                            View More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Happy Customers -->
+                            <div class="gallery-card bg-white rounded-3xl overflow-hidden shadow-lg relative group">
+                                <div class="relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1544737151-6e4b01426b1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                        alt="Happy Customers"
+                                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                                    <div class="overlay-content absolute inset-0 flex items-center justify-center">
+                                        <div class="text-center text-white">
+                                            <i class="fas fa-eye text-3xl mb-2"></i>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Happy Customers</h3>
+                                    <p class="text-gray-600 mb-4">Satisfied farmers with our premium livestock</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-emerald-600 font-semibold">500+ Happy</span>
+                                        <button
+                                            class="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-emerald-200 transition-colors">
+                                            View More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="py-20 bg-gradient-to-r from-emerald-600 to-emerald-800">
+                    <div class="container mx-auto px-6 text-center">
+                        <h2 class="text-4xl font-bold text-white mb-4">Ready to Start Your Livestock Journey?</h2>
+                        <p class="text-xl text-emerald-100 mb-8 max-w-2xl mx-auto">
+                            Contact us today to discuss your livestock needs and explore our premium collection
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button
+                                class="bg-white text-emerald-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-phone mr-2"></i>Call Now
+                            </button>
+                            <button
+                                class="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:text-emerald-600 transition-colors">
+                                <i class="fas fa-envelope mr-2"></i>Get Quote
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+
+            <%- include('../partials/footer.ejs') %>
+
+
+                <script>
+                    // Category filter functionality with enhanced features
+                    const categoryBtns = document.querySelectorAll('.category-btn');
+                    const galleryCards = document.querySelectorAll('.gallery-card');
+
+                    // Define category mappings
+                    const categoryMap = {
+                        'All Livestock': 'all',
+                        '🐐 Osmanabadi Goats': 'goats',
+                        '🐑 Sheep': 'sheep',
+                        '🐔 Poultry': 'poultry'
+                    };
+
+                    // Assign categories to cards based on their content
+                    function assignCategories() {
+                        galleryCards.forEach(card => {
+                            const title = card.querySelector('h3').textContent.toLowerCase();
+                            if (title.includes('goat') || title.includes('osmanabadi') || title.includes('buck') || title.includes('kid')) {
+                                card.dataset.category = 'goats';
+                            } else if (title.includes('sheep')) {
+                                card.dataset.category = 'sheep';
+                            } else if (title.includes('poultry') || title.includes('chicken')) {
+                                card.dataset.category = 'poultry';
+                            } else {
+                                card.dataset.category = 'general';
+                            }
+                        });
+                    }
+
+                    // Filter cards with smooth animation
+                    function filterCards(category) {
+                        galleryCards.forEach((card, index) => {
+                            const cardCategory = card.dataset.category;
+                            const shouldShow = category === 'all' || cardCategory === category || cardCategory === 'general';
+
+                            if (shouldShow) {
+                                card.style.display = 'block';
+                                setTimeout(() => {
+                                    card.style.opacity = '1';
+                                    card.style.transform = 'translateY(0)';
+                                }, index * 50);
+                            } else {
+                                card.style.opacity = '0';
+                                card.style.transform = 'translateY(20px)';
+                                setTimeout(() => {
+                                    card.style.display = 'none';
+                                }, 300);
+                            }
+                        });
+                    }
+
+                    // Add event listeners to category buttons
+                    categoryBtns.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            // Remove active class from all buttons
+                            categoryBtns.forEach(b => {
+                                b.classList.remove('active');
+                                b.classList.remove('bg-emerald-600', 'text-white');
+                                b.classList.add('bg-gray-100', 'text-gray-700');
+                            });
+
+                            // Add active class to clicked button
+                            btn.classList.add('active');
+                            btn.classList.remove('bg-gray-100', 'text-gray-700');
+                            btn.classList.add('bg-emerald-600', 'text-white');
+
+                            // Get category and filter
+                            const category = categoryMap[btn.textContent.trim()];
+                            filterCards(category);
+
+                            // Update URL hash for bookmarking
+                            window.location.hash = category;
+                        });
+                    });
+
+                    // Gallery card hover effects and interactions
+                    galleryCards.forEach(card => {
+                        const img = card.querySelector('img');
+                        const overlay = card.querySelector('.overlay-content');
+                        const viewMoreBtn = card.querySelector('button');
+
+                        // Enhanced hover effects
+                        card.addEventListener('mouseenter', () => {
+                            overlay.style.opacity = '1';
+                            overlay.style.background = 'rgba(0, 0, 0, 0.6)';
+                            card.style.transform = 'translateY(-5px)';
+                            card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+                        });
+
+                        card.addEventListener('mouseleave', () => {
+                            overlay.style.opacity = '0';
+                            overlay.style.background = 'transparent';
+                            card.style.transform = 'translateY(0)';
+                            card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
+                        });
+
+                        // View More button functionality
+                        viewMoreBtn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const title = card.querySelector('h3').textContent;
+                            const price = card.querySelector('.text-emerald-600').textContent;
+                            const description = card.querySelector('.text-gray-600').textContent;
+
+                            // Create modal or alert with details
+                            showItemDetails(title, price, description, img.src);
+                        });
+                    });
+
+                    // Show item details function
+                    function showItemDetails(title, price, description, imgSrc) {
+                        // Create modal overlay
+                        const modal = document.createElement('div');
+                        modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+                        modal.innerHTML = `
+        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 relative">
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl" onclick="this.parentElement.parentElement.remove()">
+                &times;
+            </button>
+            <img src="${imgSrc}" alt="${title}" class="w-full h-48 object-cover rounded-2xl mb-4">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">${title}</h3>
+            <p class="text-gray-600 mb-4">${description}</p>
+            <p class="text-2xl font-bold text-emerald-600 mb-6">${price}</p>
+            <div class="flex gap-4">
+                <button class="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-semibold hover:bg-emerald-700 transition-colors" onclick="contactForItem('${title}')">
+                    Contact for Details
+                </button>
+                <button class="flex-1 border-2 border-emerald-600 text-emerald-600 py-3 rounded-xl font-semibold hover:bg-emerald-50 transition-colors" onclick="this.parentElement.parentElement.parentElement.remove()">
+                    Close
+                </button>
+            </div>
+        </div>
+    `;
+                        document.body.appendChild(modal);
+
+                        // Close modal when clicking outside
+                        modal.addEventListener('click', (e) => {
+                            if (e.target === modal) {
+                                modal.remove();
+                            }
+                        });
+                    }
+
+                    // Contact for specific item
+                    function contactForItem(itemName) {
+                        const message = `Hi, I'm interested in ${itemName}. Can you provide more details?`;
+                        const whatsappUrl = `https://wa.me/919900077949?text=${encodeURIComponent(message)}`;
+                        window.open(whatsappUrl, '_blank');
+                    }
+
+                    // Smooth scroll for gallery view button
+                    document.querySelector('.pulse-glow').addEventListener('click', () => {
+                        document.querySelector('.py-20.bg-white').scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    });
+
+                    // CTA Button functionality
+                    document.querySelectorAll('button').forEach(btn => {
+                        if (btn.textContent.includes('Call Now')) {
+                            btn.addEventListener('click', () => {
+                                window.location.href = 'tel:+919900077949';
+                            });
+                        }
+
+                        if (btn.textContent.includes('Get Quote')) {
+                            btn.addEventListener('click', () => {
+                                const message = 'Hi, I would like to get a quote for your livestock.';
+                                const whatsappUrl = `https://wa.me/YOUR_PHONE_NUMBER?text=${encodeURIComponent(message)}`;
+                                window.open(whatsappUrl, '_blank');
+                            });
+                        }
+                    });
+
+                    // Initialize the gallery
+                    document.addEventListener('DOMContentLoaded', () => {
+                        assignCategories();
+
+                        // Set initial styles for cards
+                        galleryCards.forEach(card => {
+                            card.style.transition = 'all 0.3s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        });
+
+                        // Handle URL hash for direct category links
+                        if (window.location.hash) {
+                            const category = window.location.hash.substring(1);
+                            const targetBtn = Array.from(categoryBtns).find(btn =>
+                                categoryMap[btn.textContent.trim()] === category
+                            );
+                            if (targetBtn) {
+                                targetBtn.click();
+                            }
+                        }
+                    });
+
+                    // Add scroll animations for cards
+                    const observerOptions = {
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px'
+                    };
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.style.opacity = '1';
+                                entry.target.style.transform = 'translateY(0)';
+                            }
+                        });
+                    }, observerOptions);
+
+                    // Observe all gallery cards for scroll animations
+                    galleryCards.forEach(card => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(30px)';
+                        card.style.transition = 'all 0.6s ease';
+                        observer.observe(card);
+                    });
+
+                    // Add CSS animations dynamically
+                    const style = document.createElement('style');
+                    style.textContent = `
+    .gallery-card {
+        transition: all 0.3s ease;
+    }
+    
+    .gallery-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .overlay-content {
+        transition: all 0.3s ease;
+        opacity: 0;
+        background: transparent;
+    }
+    
+    .category-btn {
+        transition: all 0.3s ease;
+    }
+    
+    .category-btn.active {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+    }
+    
+    .pulse-glow {
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+`;
+                    document.head.appendChild(style);
+                </script>
+
+
+    </body>
+
+    </html>
