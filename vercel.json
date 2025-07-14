@@ -16,11 +16,25 @@
             "dest": "/public/$1"
         },
         {
+            "src": "/assets/(.*)",
+            "dest": "/public/$1"
+        },
+        {
+            "src": "/(.*\\.(ico|png|jpg|jpeg|css|js)$)",
+            "dest": "/public/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "/app.js"
         }
     ],
     "env": {
         "NODE_ENV": "production"
+    },
+    "functions": {
+        "app.js": {
+            "memory": 1024,
+            "maxDuration": 10
+        }
     }
 }
