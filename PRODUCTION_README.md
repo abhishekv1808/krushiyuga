@@ -130,10 +130,45 @@ Make sure to regularly backup your MongoDB database.
 
 ## 🔍 Troubleshooting
 
-1. **Port already in use**: Change the PORT in .env file
-2. **Database connection issues**: Verify MongoDB credentials and whitelist VPS IP
-3. **Email not working**: Ensure Gmail App Password is correctly configured
-4. **Permission errors**: Check file permissions for uploads directory
+### Common VPS Issues:
+
+#### 1. **"helmet is not defined" Error**
+```bash
+# Clean install all packages
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install
+
+# Or use the installation script
+chmod +x install-packages.sh
+./install-packages.sh
+```
+
+#### 2. **Port already in use**
+Change the PORT in .env file or kill existing process:
+```bash
+sudo lsof -t -i tcp:3000 | xargs kill -9
+```
+
+#### 3. **Database connection issues**
+- Verify MongoDB credentials and whitelist VPS IP
+- Check if MongoDB Atlas allows connections from your VPS IP
+
+#### 4. **Email not working**
+- Ensure Gmail App Password is correctly configured
+- Check if VPS allows outbound SMTP connections
+
+#### 5. **Permission errors**
+```bash
+chmod 755 public/uploads/products
+chown -R $USER:$USER public/uploads
+```
+
+#### 6. **Module not found errors**
+```bash
+# Reinstall specific packages
+npm install helmet compression express mongoose --save
+```
 
 ## 📞 Support
 

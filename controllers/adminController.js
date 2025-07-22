@@ -12,7 +12,7 @@ exports.isAuthenticated = async (req, res, next) => {
             return res.redirect('/admin/login');
         }
 
-        const decoded = jwt.verify(token, 'your-secret-key');
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
         req.admin = await Admin.findById(decoded.id);
         next();
     } catch (error) {
@@ -40,7 +40,7 @@ exports.postLogin = async (req, res) => {
             });
         }
 
-        const token = jwt.sign({ id: admin._id }, 'your-secret-key', {
+        const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET || 'your-secret-key', {
             expiresIn: '1d'
         });
 

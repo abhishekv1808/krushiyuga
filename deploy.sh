@@ -10,9 +10,16 @@
 
 echo "🚀 Starting Krushiyuga Website Production Deployment..."
 
-# Install dependencies
+# Clean install dependencies
 echo "📦 Installing dependencies..."
+rm -rf node_modules
+rm -f package-lock.json
+npm cache clean --force
 npm install --production
+
+# Verify critical packages
+echo "🔍 Verifying critical packages..."
+npm list helmet compression express mongoose
 
 # Build CSS
 echo "🎨 Building CSS..."
@@ -30,7 +37,7 @@ echo "✅ Deployment completed successfully!"
 echo ""
 echo "📋 Next steps:"
 echo "1. Configure your .env file with production values"
-echo "2. Start the server with: npm start"
+echo "2. Test the server with: npm start"
 echo "3. Set up PM2 for process management: npm install -g pm2 && pm2 start app.js --name krushiyuga"
 echo ""
 echo "🌐 Your website will be available on the configured port (default: 3000)"
