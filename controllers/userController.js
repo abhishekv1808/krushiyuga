@@ -1,4 +1,5 @@
 const Contact = require('../models/contactModel');
+const Product = require('../models/productModel');
 const { sendContactFormEmail } = require('../utils/emailUtils');
 
 exports.getHome = (req,res,next) =>{
@@ -14,8 +15,22 @@ exports.getOsmanabadiBreed = (req,res,next)=>{
     res.render('../views/user/osmanabadi-goat.ejs', {pageTitle : "Osmanabadi Breed | Krushiyuga"});
 }
 
-exports.getProducts = (req, res,next) =>{
-    res.render('../views/user/products.ejs', {pageTitle : "Our Products | Krushiyuga"});
+exports.getProducts = async (req, res, next) => {
+    try {
+        // Only fetch products that are marked for display
+        const products = await Product.find({ 
+            isDisplayed: true,
+            quantity: { $gt: 0 } // Only show products with quantity greater than 0
+        }).sort({ createdAt: -1 });
+        
+        res.render('../views/user/products.ejs', {
+            pageTitle: "Our Products | Krushiyuga",
+            products: products
+        });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).send('Internal Server Error');
+    }
 }
 
 exports.getGallery = (req, res,next) =>{
@@ -32,7 +47,10 @@ exports.getSubsidy = (req, res,next) =>{
 
 exports.submitContact = async (req, res, next) => {
     try {
-        // Create new contact entry
+        // Generate a reference number (timestamp + random number)
+        const referenceNumber = `KY${Date.now().toString().slice(-6)}${Math.floor(Math.random() * 1000)}`;
+        
+        // Create new contact entry with reference number
         const contactData = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -40,7 +58,8 @@ exports.submitContact = async (req, res, next) => {
             mobile: req.body.mobile,
             inquiryType: req.body.inquiryType,
             location: req.body.location,
-            message: req.body.message
+            message: req.body.message,
+            referenceNumber: referenceNumber
         };
 
         const contact = new Contact(contactData);
@@ -52,9 +71,6 @@ exports.submitContact = async (req, res, next) => {
         if (!emailResult.success) {
             console.error('Email sending failed:', emailResult.error);
         }
-
-        // Generate a reference number (timestamp + random number)
-        const referenceNumber = `KY${Date.now().toString().slice(-6)}${Math.floor(Math.random() * 1000)}`;
 
         // Render the success page
         res.render('../views/user/contactSuccessful.ejs', {

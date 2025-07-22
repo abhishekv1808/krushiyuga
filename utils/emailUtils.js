@@ -17,12 +17,12 @@ const transporter = nodemailer.createTransport({
 
 // Function to send contact form email
 const sendContactFormEmail = async (formData) => {
-    const { firstName, lastName, email, mobile, inquiryType, location, message } = formData;
+    const { firstName, lastName, email, mobile, inquiryType, location, message, referenceNumber } = formData;
 
     const mailOptions = {
         from: 'abhishek.v1808@gmail.com',
         to: 'itbizonetechnologies@gmail.com',
-        subject: `New Inquiry: ${inquiryType} - Krushiyuga Farms`,
+        subject: `New Inquiry: ${inquiryType} - Krushiyuga Farms [Ref: ${referenceNumber}]`,
         html: `
         <!DOCTYPE html>
         <html>
@@ -36,6 +36,7 @@ const sendContactFormEmail = async (formData) => {
                 <tr>
                     <td style="padding: 30px 0; text-align: center; background-color: #16a34a;">
                         <h1 style="color: #ffffff; margin: 0; font-size: 24px;">New Customer Inquiry</h1>
+                        <p style="color: #ffffff; margin: 10px 0 0 0; font-size: 16px;">Reference Number: ${referenceNumber}</p>
                     </td>
                 </tr>
             </table>
@@ -108,30 +109,45 @@ const sendContactFormEmail = async (formData) => {
     };
 
     try {
-        console.log('Verifying connection...');
+        if (process.env.NODE_ENV !== 'production') {
+            console.log('Verifying email connection...');
+        }
+        
         await new Promise((resolve, reject) => {
             transporter.verify(function (error, success) {
                 if (error) {
-                    console.error('Verification error:', error);
+                    if (process.env.NODE_ENV !== 'production') {
+                        console.error('Email verification error:', error);
+                    }
                     reject(error);
                 } else {
-                    console.log('Server is ready to take our messages');
+                    if (process.env.NODE_ENV !== 'production') {
+                        console.log('Email server is ready');
+                    }
                     resolve(success);
                 }
             });
         });
 
-        console.log('Attempting to send email...');
+        if (process.env.NODE_ENV !== 'production') {
+            console.log('Sending email...');
+        }
+        
         const info = await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully:', info.response);
+        
+        if (process.env.NODE_ENV !== 'production') {
+            console.log('Email sent successfully:', info.response);
+        }
+        
         return { success: true, messageId: info.messageId };
     } catch (error) {
-        console.error('Email sending failed - Detailed error:', error);
-        console.error('Stack trace:', error.stack);
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('Email sending failed:', error);
+        }
+        
         return { 
             success: false, 
-            error: error.message,
-            details: error.stack
+            error: error.message
         };
     }
 };

@@ -5,8 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tailwindcss -i ./views/input.css -o ./public/output.css --minify",
-    "start": "node server.js",
-    "dev": "nodemon app.js & npm run tailwind"
+    "start": "NODE_ENV=production node app.js",
+    "dev": "nodemon app.js",
+    "prod": "npm run build && npm start"
   },
   "keywords": [],
   "author": "",
@@ -14,14 +15,18 @@
   "description": "",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.11",
+    "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "compression": "^1.8.0",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.17.0",
     "mongoose": "^8.16.2",
+    "multer": "^2.0.1",
     "nodemailer": "^7.0.5",
     "nodemon": "^3.1.10",
     "tailwindcss": "^4.1.11"

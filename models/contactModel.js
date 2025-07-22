@@ -29,6 +29,11 @@ const contactSchema = new mongoose.Schema({
     message: {
         type: String,
         required: true,
+    },
+    referenceNumber: {
+        type: String,
+        required: true,
+        unique: true
     }
 }, { timestamps: true });
 
