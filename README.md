@@ -1,53 +1,28 @@
-# Krushiyuga - Modern Animal Husbandry Website
+# Krushiyuga - Livestock Website 🐄
 
-A comprehensive livestock farming platform specializing in Osmanabadi goat breeding and farming solutions.
+A professional livestock website built with Node.js, Express, MongoDB, and Tailwind CSS for showcasing goats, hens, pigs and providing agricultural information.
 
-## 🎯 Features
+## 🚀 Production Deployment
 
-- 🌟 Modern, responsive design using Tailwind CSS
-- 📱 Mobile-first design approach
-- 🐐 Dynamic product catalog for livestock
-- 📧 Contact form with email notifications
-- 🖼️ Interactive image gallery
-- 📊 Subsidy information section
-- 🔐 Admin panel for content management
-- 🚀 Production-ready with security features
+### Quick Deploy on VPS
 
-## 🛠️ Tech Stack
-
-- **Backend**: Node.js, Express.js 5.1.0
-- **Database**: MongoDB Atlas with Mongoose 8.16.2
-- **Frontend**: EJS Templates, Tailwind CSS 4.1.11
-- **Security**: Helmet 8.1.0, JWT Authentication, bcryptjs
-- **Email**: Nodemailer 7.0.5 with Gmail integration
-- **File Upload**: Multer 2.0.1
-- **Process Management**: PM2 with cluster mode
-
-## 🚀 Quick Start
-
-### 1. Clone the repository
+1. **Clone the repository:**
 ```bash
-git clone https://github.com/abhishekv1808/krushiyuga.git
-cd krushiyuga
+git clone <your-repo-url>
+cd krushiyuga-website
 ```
 
-### 2. Install dependencies
+2. **Run the production deployment script:**
 ```bash
-npm install
+chmod +x production-deploy.sh
+sudo ./production-deploy.sh
 ```
 
-### 3. Environment setup
-Copy `.env.example` to `.env` and configure:
-```env
-NODE_ENV=production
-PORT=3000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_gmail_app_password
+3. **Configure environment variables:**
+```bash
+cp .env.example .env
+nano .env
 ```
-
-### 4. Build and run
 ```bash
 # Build CSS
 npm run build
@@ -72,57 +47,134 @@ chmod +x deploy.sh
 # Install dependencies
 npm install --production
 
-# Build assets
-npm run build
+### Manual Setup
 
-# Start with PM2
-npm install -g pm2
-pm2 start ecosystem.config.json
+#### Prerequisites
+- Node.js 18.x LTS
+- MongoDB Atlas account
+- VPS with Ubuntu/Debian
+
+#### Installation Steps
+
+1. **Install dependencies:**
+```bash
+npm install --production
 ```
+
+2. **Configure environment:**
+Copy `.env.example` to `.env` and configure:
+```env
+MONGODB_CONNECTION_STRING=mongodb+srv://username:password@cluster.mongodb.net/dbname
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=your_secure_password
+JWT_SECRET=your_jwt_secret_key
+NODE_ENV=production
+PORT=3000
+```
+
+3. **Start with PM2:**
+```bash
+npm install -g pm2
+pm2 start ecosystem.config.json --env production
+pm2 save
+pm2 startup
+```
+
+## 🏗️ Architecture
+
+- **Backend:** Node.js with Express 5.1.0
+- **Database:** MongoDB Atlas
+- **Frontend:** EJS templates with Tailwind CSS
+- **Process Manager:** PM2 for production
+- **Security:** Helmet, JWT authentication
 
 ## 📁 Project Structure
 
 ```
-├── app.js                  # Main application file
-├── package.json           # Dependencies and scripts
-├── ecosystem.config.json  # PM2 configuration
-├── deploy.sh             # VPS deployment script
-├── controllers/          # Route controllers
-├── models/              # Database models
-├── routes/              # API routes
-├── views/               # EJS templates
-├── public/              # Static assets
-├── utils/               # Utility functions
-└── logs/                # Application logs
+├── app.js                 # Main application entry point
+├── controllers/           # Route controllers
+├── models/               # MongoDB models
+├── routes/               # Route definitions
+├── views/                # EJS templates
+├── public/               # Static assets (CSS, images)
+├── utils/                # Utility functions
+├── ecosystem.config.json # PM2 configuration
+└── production-deploy.sh  # Deployment script
 ```
 
-## 🔐 Security Features
+## 🔧 Configuration
 
-- Environment-based configuration
-- Helmet.js security headers
+### Environment Variables
+- `MONGODB_CONNECTION_STRING`: MongoDB Atlas connection string
+- `ADMIN_EMAIL`: Admin login email
+- `ADMIN_PASSWORD`: Admin login password
+- `JWT_SECRET`: Secret key for JWT tokens
+- `NODE_ENV`: Set to 'production'
+- `PORT`: Application port (default: 3000)
+
+### Static Assets
+- CSS: `/public/output.css` (compiled Tailwind CSS)
+- Images: `/public/*.png` (logos and livestock images)
+- Uploads: `/public/uploads/` (user uploaded content)
+
+## 🛡️ Security Features
+
+- Helmet middleware for security headers
 - JWT-based authentication
-- Password hashing with bcryptjs
 - Input validation and sanitization
-- Rate limiting and compression
+- Secure file upload handling
+- Environment variable protection
 
-## 🤝 Contributing
+## 📊 Admin Features
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+- Dashboard with statistics
+- Product management (CRUD operations)
+- Inquiry management
+- File upload for product images
+
+## 🌐 Pages
+
+- **Home:** Main landing page with hero section
+- **About Us:** Company information and story
+- **Products:** Livestock showcase (goats, hens, pigs)
+- **Gallery:** Image gallery with filtering
+- **Contact:** Contact form with inquiry system
+- **Subsidy:** Government subsidy information
+
+## � Monitoring
+
+Monitor your application:
+```bash
+# Check PM2 status
+pm2 status
+
+# View logs
+pm2 logs
+
+# Restart application
+pm2 restart krushiyuga
+
+# Monitor resources
+pm2 monit
+```
+
+## 🔄 Updates
+
+To update the application:
+```bash
+git pull origin main
+npm install --production
+pm2 restart krushiyuga
+```
+
+## 📞 Support
+
+For technical support or questions about the deployment, please contact the development team.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 📞 Contact
-
-**Abhishek Verma** - [@abhishekv1808](https://github.com/abhishekv1808)
-
-**Project Link**: [https://github.com/abhishekv1808/krushiyuga](https://github.com/abhishekv1808/krushiyuga)
+This project is proprietary software developed for Krushiyuga.
 
 ---
 
-**🐐 Promoting sustainable livestock farming and Osmanabadi goat breeding excellence**
+**� Krushiyuga - Quality Livestock for Sustainable Agriculture**
