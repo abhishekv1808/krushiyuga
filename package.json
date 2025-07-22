@@ -10,7 +10,12 @@
     "dev": "nodemon app.js",
     "prod": "npm run build && npm run start:prod"
   },
-  "keywords": ["livestock", "farming", "agriculture", "website"],
+  "keywords": [
+    "livestock",
+    "farming",
+    "agriculture",
+    "website"
+  ],
   "author": "Abhishek V",
   "license": "ISC",
   "description": "Krushiyuga - Modern Livestock & Agricultural Solutions Website",
