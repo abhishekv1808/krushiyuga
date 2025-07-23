@@ -78,6 +78,118 @@ app.get('/health', (req, res) => {
     });
 });
 
+// CSS status check endpoint
+app.get('/css-status', (req, res) => {
+    const fs = require('fs');
+    const path = require('path');
+    
+    try {
+        const outputCssExists = fs.existsSync(path.join(__dirname, 'public', 'output.css'));
+        const galleryCssExists = fs.existsSync(path.join(__dirname, 'public', 'gallery.css'));
+        const outputCssSize = outputCssExists ? fs.statSync(path.join(__dirname, 'public', 'output.css')).size : 0;
+        const galleryCssSize = galleryCssExists ? fs.statSync(path.join(__dirname, 'public', 'gallery.css')).size : 0;
+        
+        res.json({
+            status: 'CSS Status Check',
+            files: {
+                'output.css': {
+                    exists: outputCssExists,
+                    size: outputCssSize,
+                    url: `http://localhost:3000/output.css?v=${Date.now()}`
+                },
+                'gallery.css': {
+                    exists: galleryCssExists,
+                    size: galleryCssSize,
+                    url: `http://localhost:3000/gallery.css?v=${Date.now()}`
+                }
+            },
+            cacheBuster: Date.now(),
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// CSS test page
+app.get('/test-css', (req, res) => {
+    res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSS Test - Krushiyuga</title>
+        <link rel="stylesheet" href="/output.css?v=${Date.now()}">
+        <link rel="stylesheet" href="/gallery.css?v=${Date.now()}">
+        <style>
+            body { margin: 20px; font-family: system-ui; }
+            .test-card { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+        </style>
+    </head>
+    <body>
+        <h1>🎨 CSS Loading Test for Krushiyuga</h1>
+        
+        <div class="test-card">
+            <h2>1. Basic Tailwind Test</h2>
+            <div class="bg-green-600 text-white p-4 rounded-lg shadow-lg">
+                <p class="text-xl font-bold">✅ If this box is GREEN with white text, Tailwind CSS is working!</p>
+            </div>
+        </div>
+        
+        <div class="test-card">
+            <h2>2. Custom Button Test</h2>
+            <button class="btn-primary mr-4">Primary Button</button>
+            <button class="btn-secondary">Secondary Button</button>
+            <p><small>✅ These should be styled green and gray buttons if custom CSS is working</small></p>
+        </div>
+        
+        <div class="test-card">
+            <h2>3. Gallery CSS Test</h2>
+            <div class="gallery-hero-section text-white p-6 rounded-lg">
+                <h3 class="text-2xl font-bold">Gallery Hero Section</h3>
+                <p>✅ If this has a green gradient background, gallery.css is working!</p>
+            </div>
+        </div>
+        
+        <div class="test-card">
+            <h2>4. Advanced Tailwind Test</h2>
+            <div class="grid grid-cols-3 gap-4">
+                <div class="bg-blue-500 p-4 rounded text-white text-center">Blue</div>
+                <div class="bg-red-500 p-4 rounded text-white text-center">Red</div>
+                <div class="bg-yellow-500 p-4 rounded text-white text-center">Yellow</div>
+            </div>
+        </div>
+        
+        <div class="test-card">
+            <h2>5. CSS File Information</h2>
+            <p><strong>CSS Files:</strong></p>
+            <ul>
+                <li>📄 output.css: ${require('fs').statSync('./public/output.css').size} bytes</li>
+                <li>📄 gallery.css: ${require('fs').statSync('./public/gallery.css').size} bytes</li>
+            </ul>
+            <p><strong>Cache Buster:</strong> ${Date.now()}</p>
+        </div>
+        
+        <div class="test-card">
+            <h2>6. Debug Information</h2>
+            <button onclick="location.reload()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                🔄 Force Reload
+            </button>
+            <button onclick="window.open('/output.css?v=' + Date.now(), '_blank')" 
+                    class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 ml-2">
+                📄 View output.css
+            </button>
+            <button onclick="window.open('/gallery.css?v=' + Date.now(), '_blank')" 
+                    class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 ml-2">
+                📄 View gallery.css
+            </button>
+        </div>
+    </body>
+    </html>
+    `);
+});
+
 app.use(userRouter);
 app.use('/admin', adminRouter);
 
