@@ -103,8 +103,10 @@ mongoose.connect(dbUrl).then(async () => {
         console.error('Error creating admin user:', error);
     }
 
-    app.listen(port, () => {
+    app.listen(port, '0.0.0.0', () => {
         console.log(`Server is running on port ${port}`);
+        console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+        console.log(`Health check available at: /health`);
         if (process.env.NODE_ENV !== 'production') {
             console.log(`Development URL: http://localhost:${port}`);
         }
