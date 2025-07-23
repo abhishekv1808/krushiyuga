@@ -18,20 +18,10 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# Development and VPS specific files (not needed for Render)
-ecosystem.config.json
-production-deploy.sh
-fix-ssl-issue.sh
-SSL_ERROR_FIX.md
-PRODUCTION_COMPLETE.md
-
 # Build files
 .cache/
 dist/
 build/
-
-# Render specific
-.render/
 
 # Development files
 .vscode/
