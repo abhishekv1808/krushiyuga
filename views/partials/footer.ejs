@@ -149,31 +149,31 @@
 </footer>
 
 <script>
-function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenu.classList.toggle('open');
-}
-
-function toggleMobileDropdown() {
-    const dropdown = document.getElementById('mobileDropdown');
-    const icon = document.getElementById('mobileDropdownIcon');
-    
-    if (dropdown.style.maxHeight === '0px' || dropdown.style.maxHeight === '') {
-        dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
-        icon.style.transform = 'rotate(180deg)';
-    } else {
-        dropdown.style.maxHeight = '0px';
-        icon.style.transform = 'rotate(0deg)';
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('open');
     }
-}
 
-// Close mobile menu when clicking outside
-document.addEventListener('click', function(event) {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuButton = event.target.closest('button[onclick="toggleMobileMenu()"]');
-    
-    if (!menuButton && !mobileMenu.contains(event.target)) {
-        mobileMenu.classList.remove('open');
+    function toggleMobileDropdown() {
+        const dropdown = document.getElementById('mobileDropdown');
+        const icon = document.getElementById('mobileDropdownIcon');
+
+        if (dropdown.style.maxHeight === '0px' || dropdown.style.maxHeight === '') {
+            dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            dropdown.style.maxHeight = '0px';
+            icon.style.transform = 'rotate(0deg)';
+        }
     }
-});
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function (event) {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuButton = event.target.closest('button[onclick="toggleMobileMenu()"]');
+
+        if (!menuButton && !mobileMenu.contains(event.target)) {
+            mobileMenu.classList.remove('open');
+        }
+    });
 </script>

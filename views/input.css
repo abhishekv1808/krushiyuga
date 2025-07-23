@@ -1,7 +1,55 @@
 @import "tailwindcss";
 /* Custom styles for Krushiyuga */
+
+/* Hero section background */
+.hero-bg {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  min-height: 100vh;
+}
+
 .hero-gradient {
   background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+/* Text styling */
+.text {
+  background: linear-gradient(45deg, #10b981, #059669);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #10b981, #059669);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Animations */
+.floating-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.8); }
 }
 
 .card-hover {
@@ -16,6 +64,20 @@
 .livestock-image {
   object-fit: cover;
   border-radius: 0.5rem;
+}
+
+/* Text visibility utilities */
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bg-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.text-high-contrast {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 /* Button animations */
