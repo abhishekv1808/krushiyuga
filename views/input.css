@@ -1,7 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import "tailwindcss";
 /* Custom styles for Krushiyuga */
 .hero-gradient {
   background: linear-gradient(135deg, #059669 0%, #047857 100%);

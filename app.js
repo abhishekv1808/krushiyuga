@@ -48,7 +48,23 @@ if (!require('fs').existsSync(uploadsDir)) {
     require('fs').mkdirSync(uploadsDir, { recursive: true });
 }
 
-app.use(express.static(path.join(rootDir, 'public')));
+// Enhanced static file serving with proper MIME types and caching
+app.use(express.static(path.join(rootDir, 'public'), {
+    setHeaders: (res, path) => {
+        if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css; charset=utf-8');
+            res.setHeader('Cache-Control', 'public, max-age=31536000'); // 1 year cache for CSS
+            res.setHeader('Access-Control-Allow-Origin', '*');
+        }
+        if (path.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+            res.setHeader('Cache-Control', 'public, max-age=31536000');
+        }
+        if (path.match(/\.(png|jpg|jpeg|gif|svg|ico)$/)) {
+            res.setHeader('Cache-Control', 'public, max-age=31536000');
+        }
+    }
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());

@@ -5,6 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tailwindcss -i ./views/input.css -o ./public/output.css --minify",
+    "build:watch": "npx tailwindcss -i ./views/input.css -o ./public/output.css --watch",
+    "build:dev": "npx tailwindcss -i ./views/input.css -o ./public/output.css",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
