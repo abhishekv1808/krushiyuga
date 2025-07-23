@@ -1,9 +1,15 @@
 @import "tailwindcss";
 /* Custom styles for Krushiyuga */
 
-/* Hero section background */
+/* Hero section background with image */
 .hero-bg {
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  background: 
+    linear-gradient(rgba(5, 150, 105, 0.85), rgba(4, 120, 87, 0.85)), 
+    url('/goats_image.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   min-height: 100vh;
 }
 

@@ -37,6 +37,64 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.gallery-hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Floating Icons */
+.gallery-floating-icon {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+}
+
+.gallery-floating-icon-1 {
+    top: 20%;
+    left: 10%;
+}
+
+.gallery-floating-icon-2 {
+    bottom: 20%;
+    right: 10%;
+}
+
+.gallery-floating-animation {
+    animation: galleryFloat 3s ease-in-out infinite;
+}
+
+@keyframes galleryFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Filter Section */
+.gallery-filter-section {
+    padding: 3rem 0;
+    background: #f8f9fa;
+}
+
+.gallery-filter-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.gallery-filter-btn {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-filter-btn:hover,
+.gallery-filter-btn.gallery-active {
+    background-color: #059669;
+    color: white;
+    transform: translateY(-2px);
+}
+
 /* Gallery Cards */
 .gallery-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -81,10 +139,50 @@
     .gallery-hero-section {
         min-height: 40vh;
     }
+    
+    .gallery-filter-container {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 @media (max-width: 480px) {
     .gallery-hero-title {
         font-size: 1.5rem;
     }
+    
+    .gallery-hero-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* Gallery Grid Layout */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.gallery-item {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item.hidden {
+    display: none;
+}
+
+/* Additional utility classes */
+.gallery-text-green {
+    color: #059669;
+}
+
+.gallery-bg-green {
+    background-color: #059669;
+}
+
+.gallery-border-green {
+    border-color: #059669;
 }
