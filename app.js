@@ -11,6 +11,16 @@ const Admin = require('./models/adminModel');
 
 const app = express();
 
+// Add CORS headers for CSS files
+app.use((req, res, next) => {
+    if (req.path.endsWith('.css')) {
+        res.setHeader('Content-Type', 'text/css');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Cache-Control', 'public, max-age=31536000');
+    }
+    next();
+});
+
 // Security middleware with fallback
 try {
     const helmet = require('helmet');
@@ -18,12 +28,14 @@ try {
         contentSecurityPolicy: {
             directives: {
                 defaultSrc: ["'self'"],
-                styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://fonts.googleapis.com"],
-                fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
+                styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://fonts.googleapis.com", "blob:", "data:"],
+                fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com", "data:"],
                 scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
-                imgSrc: ["'self'", "data:", "https:"],
+                imgSrc: ["'self'", "data:", "https:", "blob:"],
+                connectSrc: ["'self'", "https:"],
             },
         },
+        crossOriginEmbedderPolicy: false,
     }));
 } catch (error) {
     console.warn('Helmet not available, using basic security headers');
@@ -81,15 +93,59 @@ app.get('/health', (req, res) => {
 
 // Explicit CSS serving routes for Render compatibility
 app.get('/output.css', (req, res) => {
-    res.setHeader('Content-Type', 'text/css');
-    res.setHeader('Cache-Control', 'public, max-age=31536000');
-    res.sendFile(path.join(rootDir, 'public', 'output.css'));
+    const fs = require('fs');
+    const cssPath = path.join(rootDir, 'public', 'output.css');
+    
+    try {
+        if (fs.existsSync(cssPath)) {
+            res.setHeader('Content-Type', 'text/css; charset=utf-8');
+            res.setHeader('Cache-Control', 'public, max-age=31536000');
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            
+            const cssContent = fs.readFileSync(cssPath, 'utf8');
+            res.send(cssContent);
+        } else {
+            res.status(404).send('/* CSS file not found */');
+        }
+    } catch (error) {
+        console.error('Error serving CSS:', error);
+        res.status(500).send('/* CSS serving error */');
+    }
 });
 
 app.get('/gallery.css', (req, res) => {
-    res.setHeader('Content-Type', 'text/css');
-    res.setHeader('Cache-Control', 'public, max-age=31536000');
-    res.sendFile(path.join(rootDir, 'views', 'gallery.css'));
+    const fs = require('fs');
+    const galleryPath = path.join(rootDir, 'views', 'gallery.css');
+    
+    try {
+        if (fs.existsSync(galleryPath)) {
+            res.setHeader('Content-Type', 'text/css; charset=utf-8');
+            res.setHeader('Cache-Control', 'public, max-age=31536000');
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            
+            const cssContent = fs.readFileSync(galleryPath, 'utf8');
+            res.send(cssContent);
+        } else {
+            // Fallback CSS if file doesn't exist
+            res.setHeader('Content-Type', 'text/css; charset=utf-8');
+            res.send(`
+                /* Gallery fallback styles */
+                .gallery-hero-section { 
+                    background: linear-gradient(135deg, #059669 0%, #047857 100%); 
+                    min-height: 50vh; 
+                }
+                .gallery-card { 
+                    transition: transform 0.3s ease; 
+                }
+                .gallery-card:hover { 
+                    transform: translateY(-4px); 
+                }
+            `);
+        }
+    } catch (error) {
+        console.error('Error serving gallery CSS:', error);
+        res.status(500).send('/* Gallery CSS serving error */');
+    }
 });
 
 // CSS debug route for troubleshooting
@@ -104,26 +160,70 @@ app.get('/css-debug', (req, res) => {
         <html>
         <head>
             <title>CSS Debug - Krushiyuga</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                .test-box { 
+                    background-color: #059669; 
+                    color: white; 
+                    padding: 16px; 
+                    border-radius: 8px; 
+                    margin: 10px 0; 
+                }
+                .status { color: green; }
+                .error { color: red; }
+            </style>
         </head>
         <body>
-            <h1>CSS Debug Information</h1>
-            <h2>Files Status:</h2>
+            <h1>🔍 CSS Debug Information</h1>
+            
+            <h2>📁 Files Status:</h2>
             <ul>
-                <li>Output CSS exists: ${fs.existsSync(cssPath)}</li>
-                <li>Gallery CSS exists: ${fs.existsSync(galleryPath)}</li>
+                <li>Output CSS exists: <span class="${fs.existsSync(cssPath) ? 'status' : 'error'}">${fs.existsSync(cssPath)}</span></li>
+                <li>Gallery CSS exists: <span class="${fs.existsSync(galleryPath) ? 'status' : 'error'}">${fs.existsSync(galleryPath)}</span></li>
                 <li>Output CSS size: ${fs.existsSync(cssPath) ? fs.statSync(cssPath).size + ' bytes' : 'N/A'}</li>
                 <li>Public directory: ${path.join(rootDir, 'public')}</li>
+                <li>Root directory: ${rootDir}</li>
             </ul>
-            <h2>CSS Test:</h2>
+            
+            <h2>🎨 CSS Test (Inline Styles - Should be Green):</h2>
+            <div class="test-box">
+                ✅ This box uses inline CSS and should be GREEN with WHITE text!
+            </div>
+            
+            <h2>🔗 CSS Test (External CSS - Should be Green if Tailwind works):</h2>
             <link rel="stylesheet" href="/output.css">
             <div class="bg-emerald-600 text-white p-4 rounded">
-                If this box is green with white text, CSS is working!
+                ✅ If this box is GREEN with WHITE text, Tailwind CSS is working!
             </div>
-            <h2>Direct CSS Links:</h2>
+            
+            <h2>📋 Direct CSS Links:</h2>
             <ul>
-                <li><a href="/output.css" target="_blank">Direct CSS Link</a></li>
-                <li><a href="/gallery.css" target="_blank">Gallery CSS Link</a></li>
+                <li><a href="/output.css" target="_blank">📄 Direct CSS Link (/output.css)</a></li>
+                <li><a href="/gallery.css" target="_blank">📄 Gallery CSS Link (/gallery.css)</a></li>
+                <li><a href="/health" target="_blank">❤️ Health Check</a></li>
             </ul>
+            
+            <h2>🔧 Browser Console Check:</h2>
+            <p>Press F12 and check the Console and Network tabs for any CSS loading errors.</p>
+            
+            <script>
+                // Check if CSS loaded
+                setTimeout(() => {
+                    const testDiv = document.querySelector('.bg-emerald-600');
+                    if (testDiv) {
+                        const styles = window.getComputedStyle(testDiv);
+                        const bgColor = styles.backgroundColor;
+                        console.log('Tailwind test div background color:', bgColor);
+                        if (bgColor.includes('5, 150, 105') || bgColor.includes('#059669')) {
+                            console.log('✅ CSS is working!');
+                        } else {
+                            console.error('❌ CSS not working. Background color:', bgColor);
+                        }
+                    }
+                }, 1000);
+            </script>
         </body>
         </html>
     `);
