@@ -4,7 +4,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tailwindcss -i ./views/input.css -o ./public/output.css --minify",
+    "build": "echo \"CSS already built - skipping build step\"",
+    "build:css": "npx tailwindcss -i ./views/input.css -o ./public/output.css --minify",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },

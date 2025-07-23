@@ -40,8 +40,10 @@ git push origin main
 - **Root Directory**: Leave empty (uses repository root)
 
 **Build & Deploy Settings:**
-- **Build Command**: `npm install && npm run build`
+- **Build Command**: `echo "CSS already built - skipping build step"` (or leave empty)
 - **Start Command**: `npm start`
+
+> **Note**: The CSS is already pre-built and included in the repository, so no build step is required.
 
 ### Step 5: Add Environment Variables
 
