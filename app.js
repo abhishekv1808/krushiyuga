@@ -48,8 +48,24 @@ if (!require('fs').existsSync(uploadsDir)) {
     require('fs').mkdirSync(uploadsDir, { recursive: true });
 }
 
+// Static file serving with proper headers for CSS
+app.use('/public', express.static(path.join(rootDir, 'public'), {
+    setHeaders: (res, path) => {
+        if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
+        }
+    }
+}));
 
-app.use(express.static(path.join(rootDir, 'public')));
+// Serve CSS files directly from root for compatibility
+app.use(express.static(path.join(rootDir, 'public'), {
+    setHeaders: (res, path) => {
+        if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
+            res.setHeader('Cache-Control', 'public, max-age=31536000');
+        }
+    }
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
@@ -61,6 +77,56 @@ app.get('/health', (req, res) => {
         timestamp: new Date().toISOString(),
         uptime: process.uptime()
     });
+});
+
+// Explicit CSS serving routes for Render compatibility
+app.get('/output.css', (req, res) => {
+    res.setHeader('Content-Type', 'text/css');
+    res.setHeader('Cache-Control', 'public, max-age=31536000');
+    res.sendFile(path.join(rootDir, 'public', 'output.css'));
+});
+
+app.get('/gallery.css', (req, res) => {
+    res.setHeader('Content-Type', 'text/css');
+    res.setHeader('Cache-Control', 'public, max-age=31536000');
+    res.sendFile(path.join(rootDir, 'views', 'gallery.css'));
+});
+
+// CSS debug route for troubleshooting
+app.get('/css-debug', (req, res) => {
+    const fs = require('fs');
+    const cssPath = path.join(rootDir, 'public', 'output.css');
+    const galleryPath = path.join(rootDir, 'views', 'gallery.css');
+    
+    res.setHeader('Content-Type', 'text/html');
+    res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>CSS Debug - Krushiyuga</title>
+        </head>
+        <body>
+            <h1>CSS Debug Information</h1>
+            <h2>Files Status:</h2>
+            <ul>
+                <li>Output CSS exists: ${fs.existsSync(cssPath)}</li>
+                <li>Gallery CSS exists: ${fs.existsSync(galleryPath)}</li>
+                <li>Output CSS size: ${fs.existsSync(cssPath) ? fs.statSync(cssPath).size + ' bytes' : 'N/A'}</li>
+                <li>Public directory: ${path.join(rootDir, 'public')}</li>
+            </ul>
+            <h2>CSS Test:</h2>
+            <link rel="stylesheet" href="/output.css">
+            <div class="bg-emerald-600 text-white p-4 rounded">
+                If this box is green with white text, CSS is working!
+            </div>
+            <h2>Direct CSS Links:</h2>
+            <ul>
+                <li><a href="/output.css" target="_blank">Direct CSS Link</a></li>
+                <li><a href="/gallery.css" target="_blank">Gallery CSS Link</a></li>
+            </ul>
+        </body>
+        </html>
+    `);
 });
 
 app.use(userRouter);
